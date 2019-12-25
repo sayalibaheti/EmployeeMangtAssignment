@@ -1,0 +1,68 @@
+﻿@using System.Linq
+@model List<EmpManagement.Models.EmpModel>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+
+<table>
+    <tr>
+        <th>Employee Id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Marital Staus</th>
+        <th>Location</th>
+        <th>Salary</th>
+        <th>Action</th>
+    </tr>
+    @foreach (var k in Model)
+    {
+        <tr>
+            <td>@k.EmpID</td>
+            <td>@k.FirstName @k.LastName</td>
+            <td>@k.Age</td>
+            <td>@k.MaritalStatus</td>
+            <td>@k.Location</td>
+            <td>@k.Salary</td>
+            <td><button data-id="@k.EmpID" onclick="DeleteEmployee(this)" id="delEmp">Delete</button></td>
+        </tr>
+    }
+</table>
+
+<script>
+    function DeleteEmployee(item)
+    {
+        var id = $(item).data("id");
+        $.ajax({
+            url: '@Url.Action("DeleteEmployee", "Home")',
+            data: { id: id },
+    contentType: "application/json; charset=utf-8",
+   
+    success: function (data) {
+        if (data=="true")
+        {
+            alert("Deleted Successfully");
+        }
+        else {
+            alert("Error ! Please try again later");
+        }
+    }
+
+});
+    }
+</script>

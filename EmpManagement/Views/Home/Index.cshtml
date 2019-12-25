@@ -1,0 +1,43 @@
+﻿@using System.Linq
+@model List<EmpManagement.Models.EmpModel>
+
+<div style="    padding-top: 20px;padding-bottom:20px">
+    <div id="error" style="display:none;color:red">Please Enter atleast one filter.</div>
+  <input id="age" placeholder="Enter age" min="18" max="85" type="number" style="width:115px"/>
+    <input id="location" placeholder="Enter Location"/>
+    <input id="salary" placeholder="Enter Salary" type="number" min="10000" style="width:115px"/>
+    <button id="SearchEmp" onclick="Search()">Search</button>
+</div>
+<div id="List">@Html.Partial("_EmpList",Model)</div>
+
+<script>
+    function Search()
+    {
+        var age = $("#age").val();
+        var location = $("#location").val();
+        var salary = $("#salary").val();
+
+        if (age == "" && location == "" && salary=="")
+        {
+            $("#error").show();
+            setTimeout(function () {
+                $("#error").fadeOut();
+            },5000
+            );
+        }
+        else {
+            $.ajax({
+                url: '@Url.Action("GetEmployees", "Home")',
+                data: { age: age, location: location, salary: salary },
+                contentType: "application/json; charset=utf-8",
+             
+                type: "GET",
+                success: function (data) {
+                   
+                        $("#List").html(data);
+                    }
+               
+            });
+        }
+    }
+</script>
