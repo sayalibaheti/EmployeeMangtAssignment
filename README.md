@@ -1,5 +1,7 @@
 Simple MVC project to manage employee list
 
+Screenshots folder conatins running project screenshots
+
 Problem Statement:
 Show list of employees with basic fields ID, name, age and marital status. 
 Page should contain facility to search employee with salary , age and location.
