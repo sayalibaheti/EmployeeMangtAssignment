@@ -1,0 +1,45 @@
+
+--Create main table script 
+create table Employee
+(
+EmpID int identity(1,1) primary key,
+LastName nvarchar(50) not null,
+FirstName nvarchar(50) not null,
+Age datetime not null,
+MaritalStatus varchar(50) not null,
+salary int not null,
+Location nvarchar(50) not null
+
+)
+
+USE [EmpManagement]
+GO
+
+INSERT INTO [dbo].[Employee]
+           ([LastName]
+           ,[FirstName]
+           ,[Age]
+           ,[MaritalStatus]
+           ,[salary]
+           ,[Location])
+     VALUES
+           ('Chandak','Purna',DATEADD(year,-20,getdate()),'Unmarried',200000,'Pune'),
+		   ('Deshi','Divya',DATEADD(year,-40,getdate()),'Married',500000,'Nashik'),
+		   ('Singh','Praveen',DATEADD(year,-23,getdate()),'Unmarried',600000,'Pune'),
+           ('Pathak','Dev',DATEADD(year,-25,getdate()),'Unmarried',100000,'Nagpur'),
+		   ('Patil','Kiran',DATEADD(year,-30,getdate()),'Married',900000,'Pune')
+GO
+
+
+--create Location config table
+USE [EmpManagement]
+GO
+
+INSERT INTO [dbo].[LocationConfig]
+           ([LocationName]
+           ,[IsActive])
+     VALUES
+           ('Nashik',1),('Pune',1),('Delhi',0),('Nagpur',1),('Chennai',1)
+GO
+
+
