@@ -1,23 +1,33 @@
 ﻿@using System.Linq
-@model List<EmpManagement.Models.EmpModel>
+@using DTO
+@model List<EmployeeDTO>
 
-<div style="    padding-top: 20px;padding-bottom:20px">
-    <div id="error" style="display:none;color:red">Please Enter atleast one filter.</div>
-  <input id="age" placeholder="Enter age" min="18" max="85" type="number" style="width:115px"/>
-    <input id="location" placeholder="Enter Location"/>
-    <input id="salary" placeholder="Enter Salary" type="number" min="10000" style="width:115px"/>
-    <button id="SearchEmp" onclick="Search()">Search</button>
+
+<div class="searchBox">
+    <div id="error" style="display:none;color:red">Please enter atleast one filter.</div>
+  <input id="age" placeholder="Enter age" min="18" max="85" type="number" style=""/>
+   <select name="loc[]" multiple id="loc" style="display:inline-block; width:200px;">
+       
+           @foreach (var l in ViewBag.Locations)
+           {
+               <option value="@l.LocationId">@l.Location</option>
+           }
+      
+    </select>
+    <input id="salary" placeholder="Enter Salary" type="number" min="10000" style=""/>
+    <button id="SearchEmp" onclick="Search()" style="display:inline-block;">Search</button>
 </div>
 <div id="List">@Html.Partial("_EmpList",Model)</div>
 
 <script>
+   
     function Search()
     {
         var age = $("#age").val();
-        var location = $("#location").val();
+        var location = $("#ms-list-1 span").html();
         var salary = $("#salary").val();
 
-        if (age == "" && location == "" && salary=="")
+        if (age == "" && location == "Select Locations" && salary=="")
         {
             $("#error").show();
             setTimeout(function () {
@@ -40,4 +50,32 @@
             });
         }
     }
+
+    $(document).ready(function () {
+      
+        $('#loc').multiselect({
+            columns: 1,
+            placeholder: 'Select Locations'
+        });
+    });
 </script>
+
+<style>
+    .searchBox {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        display: inline-block;
+    }
+
+    #age {
+        height: 29px;
+        width: 115px;
+        display: inline-block;
+    }
+
+    #salary {
+        height: 29px;
+        width: 115px;
+        display: inline-block;
+    }
+</style>

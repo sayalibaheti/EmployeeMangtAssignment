@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EmpManagement.Models
+namespace DataAccessLayer
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EmpMgmtEntities : DbContext
+    public partial class DataAccessEntities : DbContext
     {
-        public EmpMgmtEntities()
-            : base("name=EmpMgmtEntities")
+        public DataAccessEntities()
+            : base("name=DataAccessEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace EmpManagement.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Emp> Emps { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<LocationConfig> LocationConfigs { get; set; }
     }
 }

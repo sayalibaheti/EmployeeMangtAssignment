@@ -7,19 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EmpManagement.Models
+namespace DataAccessLayer
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Emp
+    public partial class LocationConfig
     {
-        public int EmpID { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public Nullable<int> Age { get; set; }
-        public string MaritalStatus { get; set; }
-        public string Location { get; set; }
-        public Nullable<int> Salary { get; set; }
+        public int LocationId { get; set; }
+        public string LocationName { get; set; }
+        public Nullable<bool> IsActive { get; set; }
     }
 }
